@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Search, ChevronDown, ChevronUp, Edit2, Trash2, Check, X, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import ExcelJS from 'exceljs';
+import { parseISO, format } from 'date-fns';
 
 // Define TypeScript interfaces
 interface Transaction {
@@ -32,6 +34,65 @@ export default function App() {
   //normal state
   const [activeTab, setActiveTab] = useState<'transactions' | 'clients'>('transactions');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const [isImporting, setIsImporting] = useState(false);
+  const [importStatus, setImportStatus] = useState<{
+    status: 'idle' | 'loading' | 'success' | 'error';
+    message: string;
+  }>({ status: 'idle', message: '' });
+  
+  
+  const handleImportExcel = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsImporting(true);
+      setImportStatus({ status: 'loading', message: 'Reading Excel file...' });
+
+      // Create FormData object
+      const formData = new FormData();
+      formData.append('excel_file', file);
+
+      // Upload the file and process on the server side
+      setImportStatus({ status: 'loading', message: 'Uploading and processing file...' });
+      const response = await fetch('http://localhost:3002/import-excel/', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Server error during import');
+      }
+
+      const result = await response.json();
+      setImportStatus({
+        status: 'success',
+        message: result.message || `Successfully imported data`,
+      });
+
+      setTimeout(() => {
+        setImportStatus({ status: 'idle', message: '' });
+        if (activeTab === 'transactions') {
+          window.dispatchEvent(new Event('refresh-transactions'));
+        } else {
+          window.dispatchEvent(new Event('refresh-clients'));
+        }
+      }, 2000);
+
+    } catch (error) {
+      console.error('Import error:', error);
+      setImportStatus({
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Unknown error occurred during import',
+      });
+    } finally {
+      setIsImporting(false);
+      event.target.value = '';
+    }
+     window.location.reload();
+  };
   
   return (
     <div className="flex h-screen bg-gray-50">
@@ -97,6 +158,42 @@ export default function App() {
       <main className={`flex-grow p-6 transition-all duration-300 ${
         isSidebarOpen ? 'md:ml-0' : 'md:ml-0'
       }`}>
+        {/* Import Alert Message */}
+        {importStatus.status !== 'idle' && (
+          <div className={`mb-4 p-3 rounded-md ${
+            importStatus.status === 'loading' ? 'bg-blue-50 text-blue-700' :
+            importStatus.status === 'success' ? 'bg-green-50 text-green-700' :
+            'bg-red-50 text-red-700'
+          }`}>
+            {importStatus.status === 'loading' && (
+              <div className="flex items-center">
+                <div className="w-4 h-4 mr-2 border-2 border-t-blue-500 rounded-full animate-spin"></div>
+                {importStatus.message}
+              </div>
+            )}
+            {importStatus.status === 'success' && importStatus.message}
+            {importStatus.status === 'error' && importStatus.message}
+          </div>
+        )}
+        
+        {/* Top Bar with Import Button */}
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">{activeTab === 'transactions' ? 'Transactions' : 'Clients'}</h1>
+          
+          <div>
+            <label className="relative inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md cursor-pointer hover:bg-blue-700 transition-colors">
+              <span>Import Excel</span>
+              <input 
+                type="file" 
+                accept=".xlsx,.xls"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                onChange={handleImportExcel}
+                disabled={isImporting}
+              />
+            </label>
+          </div>
+        </div>
+        
         {activeTab === 'transactions' ? <TransactionsTable /> : <ClientsTable />}
       </main>
     </div>
@@ -505,10 +602,10 @@ function TransactionsTable() {
             ) : (
               transactions.map((transaction) => (
                 <tr key={transaction.vch_no} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">{transaction.due_date}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{transaction.transaction_date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{editingVchNo === transaction.vch_no ? (
                                                                 <input
-                                                                  type="text"
+                                                                  type="date"
                                                                   value={editedTransaction.due_date || transaction.due_date}
                                                                   onChange={(e) => setEditedTransaction(prev => ({ ...prev, due_date: e.target.value }))}
                                                                   className="border px-2 py-1 rounded"
@@ -519,7 +616,7 @@ function TransactionsTable() {
                   <td className="px-6 py-4 whitespace-nowrap">{transaction.client_name_read}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{editingVchNo === transaction.vch_no ? (
                                                                   <input
-                                                                    type="text"
+                                                                    type="date"
                                                                     value={editedTransaction.vch_type || transaction.vch_type}
                                                                     onChange={(e) => setEditedTransaction(prev => ({ ...prev, vch_type: e.target.value }))}
                                                                     className="border px-2 py-1 rounded"
@@ -802,7 +899,7 @@ function ClientsTable() {
     }
     
     try {
-      const response = await fetch('http://localhost:3002/api/clients/${client_name}/', {
+      const response = await fetch(`http://localhost:3002/api/clients/${client_name}/`, {
         method: 'DELETE',
       });
       
@@ -1075,3 +1172,5 @@ function ClientsTable() {
     </div>
   );
 }
+
+

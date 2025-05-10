@@ -1,12 +1,10 @@
 from rest_framework import serializers
 from .models import Client, Transaction
 
-
 class ClientSerializer(serializers.ModelSerializer):
     """
     Serializer for the Client model.
     """
-
     class Meta:
         model = Client
         fields = ['id', 'client_name', 'credit_period', 'created_at', 'updated_at']

@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from paymentreminder.views import ClientViewSet, TransactionViewSet
+from paymentreminder.views import ClientViewSet, TransactionViewSet,import_excel
 
 # Create a router and register our viewsets with it
 router = DefaultRouter()
@@ -28,6 +28,6 @@ router.register(r'api/transactions', TransactionViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    # Add API authentication URLs if needed
+    path('import-excel/', import_excel, name='import-excel'),
     path('api-auth/', include('rest_framework.urls')),
 ]
