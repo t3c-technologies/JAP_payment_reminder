@@ -16,6 +16,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     client_name = serializers.CharField(write_only=True)
     client_name_read = serializers.CharField(source='client.client_name', read_only=True)
 
+
     class Meta:
         model = Transaction
         fields = [

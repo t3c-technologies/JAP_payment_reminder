@@ -25,6 +25,9 @@ class ClientViewSet(viewsets.ModelViewSet):
     search_fields = ['client_name']
     ordering_fields = ['client_name', 'credit_period', 'created_at']
     ordering = ['client_name']
+    lookup_field = 'client_name'          
+    lookup_value_regex = '[^/]+'
+
 
     def get_queryset(self):
         """
@@ -41,11 +44,11 @@ class ClientViewSet(viewsets.ModelViewSet):
 
 
 class TransactionViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for viewing and editing Transaction instances.
-    """
     serializer_class = TransactionSerializer
     queryset = Transaction.objects.all()
+    lookup_field = 'vch_no'
+    lookup_value_regex = '.+'
+
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
@@ -57,43 +60,37 @@ class TransactionViewSet(viewsets.ModelViewSet):
         'vch_type', 'vch_no', 'debit', 'credit', 'status'
     ]
     ordering = ['-transaction_date']
-    
+
     def get_queryset(self):
-        """
-        Optionally restricts the returned transactions by filtering against
-        query parameters in the URL.
-        """
         queryset = Transaction.objects.select_related('client')
-        
-        client_name = self.request.query_params.get('client_name', None)
-        status_filter = self.request.query_params.get('status', None)
-        date_from = self.request.query_params.get('date_from', None)
-        date_to = self.request.query_params.get('date_to', None)
-        
+
+        client_name = self.request.query_params.get('client_name')
+        status_filter = self.request.query_params.get('status')
+        date_from = self.request.query_params.get('date_from')
+        date_to = self.request.query_params.get('date_to')
+
         if client_name:
             queryset = queryset.filter(client__client_name__icontains=client_name)
-            
         if status_filter:
             queryset = queryset.filter(status=status_filter)
-            
         if date_from:
             queryset = queryset.filter(transaction_date__gte=date_from)
-            
         if date_to:
             queryset = queryset.filter(transaction_date__lte=date_to)
-            
+
         return queryset
-    
-    @action(detail=True, methods=['patch'], serializer_class=TransactionStatusSerializer)
-    def status(self, request, pk=None):
-        """
-        Update the status of a transaction.
-        """
+
+    @action(
+        detail=True,
+        methods=['patch'],
+        url_path='status',  # <-- this enables /<vch_no>/status/
+        serializer_class=TransactionStatusSerializer
+    )
+    def status(self, request, vch_no=None):  # <-- match lookup_field!
         transaction = self.get_object()
         serializer = self.get_serializer(transaction, data=request.data, partial=True)
-        
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

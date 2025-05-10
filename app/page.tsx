@@ -7,6 +7,7 @@ interface Transaction {
   transaction_date: string;
   due_date: string;
   client_name: string;
+  client_name_read:string;
   vch_type: string;
   vch_no: string;
   debit: number;
@@ -28,6 +29,7 @@ interface PaginationData {
 
 // Main App Component
 export default function App() {
+  //normal state
   const [activeTab, setActiveTab] = useState<'transactions' | 'clients'>('transactions');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
@@ -103,6 +105,10 @@ export default function App() {
 
 // Transactions Table Component
 function TransactionsTable() {
+  //editing state
+  const [editingVchNo, setEditingVchNo] = useState<string | null>(null);
+  const [editedTransaction, setEditedTransaction] = useState<Partial<Transaction>>({});
+
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -198,6 +204,31 @@ function TransactionsTable() {
     }));
   };
 
+  //EDITING ROWS
+  const handleSaveEdit = async (vch_no: string) => {
+    try {
+      const response = await fetch(`http://localhost:3002/api/transactions/${encodeURIComponent(vch_no)}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editedTransaction),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update transaction');
+      }
+
+      setEditingVchNo(null);
+      setEditedTransaction({});
+      fetchTransactions();
+    } catch (error) {
+      console.error('Edit error:', error);
+    }
+  };
+
+
+
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFilters(prev => ({
@@ -218,9 +249,10 @@ function TransactionsTable() {
     }));
   };
 
-  const handleChangeStatus = async (client_name: string, newStatus: 'paid' | 'unpaid') => {
+  //TRANSACTIONS PAYMENT STATUS TOGGLE FUNCTION
+  const handleChangeStatus = async (vch_no: string, newStatus: 'paid' | 'unpaid') => {
     try {
-      const response = await fetch(`http://localhost:3002/api/transactions/${client_name}/status/`, {
+      const response = await fetch(`http://localhost:3002/api/transactions/${encodeURIComponent(vch_no)}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -234,7 +266,7 @@ function TransactionsTable() {
       
       // Update local state
       setTransactions(prev => 
-        prev.map(t => t.client_name === client_name ? { ...t, status: newStatus } : t)
+        prev.map(t => t.vch_no === vch_no ? { ...t, status: newStatus } : t)
       );
       
     } catch (err) {
@@ -243,13 +275,14 @@ function TransactionsTable() {
     }
   };
 
-  const handleDelete = async (client_name: string) => {
+  //TRANSACTIONS DELETE FUNCTION
+  const handleDelete = async (vch_no: string) => {
     if (!confirm('Are you sure you want to delete this transaction?')) {
       return;
     }
     
     try {
-      const response = await fetch(`http://localhost:3002/api/transactions/${client_name}/`, {
+      const response = await fetch(`http://localhost:3002/api/transactions/${encodeURIComponent(vch_no)}/`, {
         method: 'DELETE',
       });
       
@@ -258,7 +291,7 @@ function TransactionsTable() {
       }
       
       // Remove from local state
-      setTransactions(prev => prev.filter(t => t.client_name !== client_name));
+      setTransactions(prev => prev.filter(t => t.vch_no !== vch_no));
       
       // Update count
       setPagination(prev => ({
@@ -269,6 +302,26 @@ function TransactionsTable() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
       console.error('Error deleting transaction:', err);
+    }
+  };
+
+  //CLIENTS DELETE
+  const handleClientDelete = async (client_name: string) => {
+    if (!confirm(`Are you sure you want to delete client "${client_name}"?`)) return;
+
+    try {
+      const response = await fetch(`http://localhost:3002/api/clients/${encodeURIComponent(client_name)}/`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete client');
+      }
+
+      fetchTransactions();
+    } catch (error) {
+      console.error('Client delete error:', error);
+      setError(error instanceof Error ? error.message : 'Unknown error');
     }
   };
 
@@ -472,16 +525,52 @@ function TransactionsTable() {
             ) : (
               transactions.map((transaction) => (
                 <tr key={transaction.vch_no} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">{transaction.transaction_date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{transaction.due_date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{transaction.client_name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{transaction.vch_type}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{editingVchNo === transaction.vch_no ? (
+                                                                <input
+                                                                  type="text"
+                                                                  value={editedTransaction.due_date || transaction.due_date}
+                                                                  onChange={(e) => setEditedTransaction(prev => ({ ...prev, due_date: e.target.value }))}
+                                                                  className="border px-2 py-1 rounded"
+                                                                />
+                                                              ) : (
+                                                                transaction.due_date
+                                                              )}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{transaction.client_name_read}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{editingVchNo === transaction.vch_no ? (
+                                                                  <input
+                                                                    type="text"
+                                                                    value={editedTransaction.vch_type || transaction.vch_type}
+                                                                    onChange={(e) => setEditedTransaction(prev => ({ ...prev, vch_type: e.target.value }))}
+                                                                    className="border px-2 py-1 rounded"
+                                                                  />
+                                                                ) : (
+                                                                  transaction.vch_type
+                                                                )}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{transaction.vch_no}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {Number(transaction.debit).toFixed(2)}
+                    {editingVchNo === transaction.vch_no ? (
+                      <input
+                        type="text"
+                        value={editedTransaction.debit || transaction.debit}
+                        onChange={(e) => setEditedTransaction(prev => ({ ...prev, debit: parseFloat(e.target.value) }))}
+                        className="border px-2 py-1 rounded"
+                      />
+                    ) : (
+                      transaction.debit
+                    )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {Number(transaction.credit).toFixed(2)}
+                    {editingVchNo === transaction.vch_no ? (
+                      <input
+                        type="text"
+                        value={editedTransaction.credit || transaction.credit}
+                        onChange={(e) => setEditedTransaction(prev => ({ ...prev, credit: parseFloat(e.target.value) }))}
+                        className="border px-2 py-1 rounded"
+                      />
+                    ) : (
+                      transaction.credit
+                    )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs rounded-full ${
@@ -494,34 +583,62 @@ function TransactionsTable() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex space-x-2">
-                      <button 
-                        title="Edit"
-                        className="text-blue-600 hover:text-blue-900"
-                        onClick={() => window.location.href = `/edit-transaction/${transaction.client_name}`}
-                      >
-                        <Edit2 size={18} />
-                      </button>
-                      
-                      <button 
-                        title={transaction.status === 'paid' ? 'Mark as Unpaid' : 'Mark as Paid'}
-                        className={transaction.status === 'paid' ? 'text-red-600 hover:text-red-900' : 'text-green-600 hover:text-green-900'}
-                        onClick={() => handleChangeStatus(
-                          transaction.client_name, 
-                          transaction.status === 'paid' ? 'unpaid' : 'paid'
-                        )}
-                      >
-                        {transaction.status === 'paid' ? <X size={18} /> : <Check size={18} />}
-                      </button>
-                      
-                      <button 
-                        title="Delete"
-                        className="text-red-600 hover:text-red-900"
-                        onClick={() => handleDelete(transaction.client_name)}
-                      >
-                        <Trash2 size={18} />
-                      </button>
+                      {editingVchNo === transaction.vch_no ? (
+                        <>
+                          <button 
+                            title="Save"
+                            onClick={() => handleSaveEdit(transaction.vch_no)}
+                            className="text-green-600 hover:text-green-800"
+                          >
+                            <Check size={18} />
+                          </button>
+                          <button 
+                            title="Cancel"
+                            onClick={() => {
+                              setEditingVchNo(null);
+                              setEditedTransaction({});
+                            }}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <X size={18} />
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button 
+                            title="Edit"
+                            onClick={() => {
+                              setEditingVchNo(transaction.vch_no);
+                              setEditedTransaction(transaction);
+                            }}
+                            className="text-blue-600 hover:text-blue-800"
+                          >
+                            <Edit2 size={18} />
+                          </button>
+
+                          <button 
+                            title={transaction.status === 'paid' ? 'Mark as Unpaid' : 'Mark as Paid'}
+                            className={transaction.status === 'paid' ? 'text-red-600 hover:text-red-800' : 'text-green-600 hover:text-green-800'}
+                            onClick={() => handleChangeStatus(
+                              transaction.vch_no,
+                              transaction.status === 'paid' ? 'unpaid' : 'paid'
+                            )}
+                          >
+                            {transaction.status === 'paid' ? <X size={18} /> : <Check size={18} />}
+                          </button>
+
+                          <button 
+                            title="Delete"
+                            onClick={() => handleDelete(transaction.vch_no)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
+
                 </tr>
               ))
             )}
@@ -695,7 +812,7 @@ function ClientsTable() {
     }));
   };
 
-  const handleDelete = async (client_name: string) => {
+  const handleClientDelete = async (client_name: string) => {
     if (!confirm('Are you sure you want to delete this client?')) {
       return;
     }
@@ -822,7 +939,7 @@ function ClientsTable() {
                       <button 
                         title="Delete"
                         className="text-red-600 hover:text-red-900"
-                        onClick={() => handleDelete(client.client_name)}
+                        onClick={() =>  handleClientDelete(client.client_name)}
                       >
                         <Trash2 size={18} />
                       </button>
