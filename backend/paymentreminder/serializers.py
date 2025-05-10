@@ -6,58 +6,43 @@ class ClientSerializer(serializers.ModelSerializer):
     """
     Serializer for the Client model.
     """
+
     class Meta:
         model = Client
         fields = ['id', 'client_name', 'credit_period', 'created_at', 'updated_at']
         read_only_fields = ['created_at', 'updated_at']
 
-
 class TransactionSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the Transaction model.
-    """
-    client_name = serializers.CharField(source='client.client_name', read_only=True)
-    id = serializers.IntegerField(write_only=True)  
+    client_name = serializers.CharField(write_only=True)
+    client_name_read = serializers.CharField(source='client.client_name', read_only=True)
 
     class Meta:
         model = Transaction
         fields = [
-            'id', 'transaction_date', 'due_date', 'client_name', 'id',
-            'vch_type', 'vch_no', 'debit', 'credit', 'status',
+            'vch_no', 'transaction_date', 'due_date',
+            'client_name', 'client_name_read',
+            'vch_type', 'debit', 'credit', 'status',
             'created_at', 'updated_at'
         ]
         read_only_fields = ['created_at', 'updated_at']
 
-    def validate(self, data):
-        """
-        Custom validation to ensure due_date is after transaction_date.
-        """
-        if 'transaction_date' in data and 'due_date' in data:
-            if data['due_date'] < data['transaction_date']:
-                raise serializers.ValidationError(
-                    "Due date cannot be earlier than transaction date"
-                )
-        
-        # Validate client exists
-        if 'id' in data:
-            try:
-                client = Client.objects.get(pk=data['id'])
-            except Client.DoesNotExist:
-                raise serializers.ValidationError({
-                    'id': 'Client with this ID does not exist.'
-                })
-        
-        return data
+    def validate_client_name(self, value):
+        if not Client.objects.filter(client_name=value).exists():
+            raise serializers.ValidationError("Client with this name does not exist.")
+        return value
 
     def create(self, validated_data):
-        id = validated_data.pop('id')
-        client = Client.objects.get(pk=id)
+        client_name = validated_data.pop('client_name', None)
+        if not client_name:
+            raise serializers.ValidationError({'client_name': 'This field is required.'})
+
+        client = Client.objects.get(client_name=client_name)
         return Transaction.objects.create(client=client, **validated_data)
 
     def update(self, instance, validated_data):
-        if 'id' in validated_data:
-            id = validated_data.pop('id')
-            client = Client.objects.get(pk=id)
+        client_name = validated_data.pop('client_name', None)
+        if client_name:
+            client = Client.objects.get(client_name=client_name)
             instance.client = client
         return super().update(instance, validated_data)
 

@@ -15,8 +15,8 @@ class ClientAdmin(admin.ModelAdmin):
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'transaction_date', 'due_date', 'get_client_name',
-        'vch_type', 'vch_no', 'debit', 'credit', 'status'
+        'vch_no', 'transaction_date', 'due_date', 'get_client_name',
+        'vch_type', 'debit', 'credit', 'status',"client_id"
     )
     list_filter = ('status', 'transaction_date', 'due_date')
     search_fields = ('client__client_name', 'vch_type', 'vch_no')

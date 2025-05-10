@@ -4,7 +4,6 @@ import { Search, ChevronDown, ChevronUp, Edit2, Trash2, Check, X, ChevronLeft, C
 
 // Define TypeScript interfaces
 interface Transaction {
-  id: number;
   transaction_date: string;
   due_date: string;
   client_name: string;
@@ -16,7 +15,6 @@ interface Transaction {
 }
 
 interface Client {
-  id: number;
   client_name: string;
   credit_period: number;
 }
@@ -220,9 +218,9 @@ function TransactionsTable() {
     }));
   };
 
-  const handleChangeStatus = async (id: number, newStatus: 'paid' | 'unpaid') => {
+  const handleChangeStatus = async (client_name: string, newStatus: 'paid' | 'unpaid') => {
     try {
-      const response = await fetch(`http://localhost:3002/api/transactions/${id}/status/`, {
+      const response = await fetch(`http://localhost:3002/api/transactions/${client_name}/status/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -236,7 +234,7 @@ function TransactionsTable() {
       
       // Update local state
       setTransactions(prev => 
-        prev.map(t => t.id === id ? { ...t, status: newStatus } : t)
+        prev.map(t => t.client_name === client_name ? { ...t, status: newStatus } : t)
       );
       
     } catch (err) {
@@ -245,13 +243,13 @@ function TransactionsTable() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (client_name: string) => {
     if (!confirm('Are you sure you want to delete this transaction?')) {
       return;
     }
     
     try {
-      const response = await fetch(`http://localhost:3002/api/transactions/${id}/`, {
+      const response = await fetch(`http://localhost:3002/api/transactions/${client_name}/`, {
         method: 'DELETE',
       });
       
@@ -260,7 +258,7 @@ function TransactionsTable() {
       }
       
       // Remove from local state
-      setTransactions(prev => prev.filter(t => t.id !== id));
+      setTransactions(prev => prev.filter(t => t.client_name !== client_name));
       
       // Update count
       setPagination(prev => ({
@@ -473,7 +471,7 @@ function TransactionsTable() {
               </tr>
             ) : (
               transactions.map((transaction) => (
-                <tr key={transaction.id} className="hover:bg-gray-50">
+                <tr key={transaction.vch_no} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">{transaction.transaction_date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{transaction.due_date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{transaction.client_name}</td>
@@ -499,7 +497,7 @@ function TransactionsTable() {
                       <button 
                         title="Edit"
                         className="text-blue-600 hover:text-blue-900"
-                        onClick={() => window.location.href = `/edit-transaction/${transaction.id}`}
+                        onClick={() => window.location.href = `/edit-transaction/${transaction.client_name}`}
                       >
                         <Edit2 size={18} />
                       </button>
@@ -508,7 +506,7 @@ function TransactionsTable() {
                         title={transaction.status === 'paid' ? 'Mark as Unpaid' : 'Mark as Paid'}
                         className={transaction.status === 'paid' ? 'text-red-600 hover:text-red-900' : 'text-green-600 hover:text-green-900'}
                         onClick={() => handleChangeStatus(
-                          transaction.id, 
+                          transaction.client_name, 
                           transaction.status === 'paid' ? 'unpaid' : 'paid'
                         )}
                       >
@@ -518,7 +516,7 @@ function TransactionsTable() {
                       <button 
                         title="Delete"
                         className="text-red-600 hover:text-red-900"
-                        onClick={() => handleDelete(transaction.id)}
+                        onClick={() => handleDelete(transaction.client_name)}
                       >
                         <Trash2 size={18} />
                       </button>
@@ -697,13 +695,13 @@ function ClientsTable() {
     }));
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (client_name: string) => {
     if (!confirm('Are you sure you want to delete this client?')) {
       return;
     }
     
     try {
-      const response = await fetch(`http://localhost:3002/api/clients/${id}/`, {
+      const response = await fetch(`http://localhost:3002/api/clients/${client_name}/`, {
         method: 'DELETE',
       });
       
@@ -712,7 +710,7 @@ function ClientsTable() {
       }
       
       // Remove from local state
-      setClients(prev => prev.filter(c => c.id !== id));
+      setClients(prev => prev.filter(c => c.client_name !== client_name));
       
       // Update count
       setPagination(prev => ({
@@ -808,7 +806,7 @@ function ClientsTable() {
               </tr>
             ) : (
               clients.map((client) => (
-                <tr key={client.id} className="hover:bg-gray-50">
+                <tr key={client.client_name} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">{client.client_name}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{client.credit_period}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -816,7 +814,7 @@ function ClientsTable() {
                       <button 
                         title="Edit"
                         className="text-blue-600 hover:text-blue-900"
-                        onClick={() => window.location.href = `/edit-client/${client.id}`}
+                        onClick={() => window.location.href = `/edit-client/${client.client_name}`}
                       >
                         <Edit2 size={18} />
                       </button>
@@ -824,7 +822,7 @@ function ClientsTable() {
                       <button 
                         title="Delete"
                         className="text-red-600 hover:text-red-900"
-                        onClick={() => handleDelete(client.id)}
+                        onClick={() => handleDelete(client.client_name)}
                       >
                         <Trash2 size={18} />
                       </button>

@@ -21,7 +21,6 @@ class Client(models.Model):
 
 
 class Transaction(models.Model):
-    id = models.IntegerField(primary_key=True)
     """
     Model representing a financial transaction.
     """
@@ -38,7 +37,7 @@ class Transaction(models.Model):
         related_name='transactions'
     )
     vch_type = models.CharField(max_length=100)
-    vch_no = models.CharField(max_length=100)
+    vch_no = models.CharField(max_length=100,primary_key=True)
     debit = models.DecimalField(
         max_digits=15, 
         decimal_places=2,
