@@ -305,26 +305,6 @@ function TransactionsTable() {
     }
   };
 
-  //CLIENTS DELETE
-  const handleClientDelete = async (client_name: string) => {
-    if (!confirm(`Are you sure you want to delete client "${client_name}"?`)) return;
-
-    try {
-      const response = await fetch(`http://localhost:3002/api/clients/${encodeURIComponent(client_name)}/`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete client');
-      }
-
-      fetchTransactions();
-    } catch (error) {
-      console.error('Client delete error:', error);
-      setError(error instanceof Error ? error.message : 'Unknown error');
-    }
-  };
-
   const totalPages = Math.ceil(pagination.count / pagination.pageSize);
 
   return (
@@ -714,11 +694,16 @@ function TransactionsTable() {
   );
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Clients Table Component
 function ClientsTable() {
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [editingClientName, setEditingClientName] = useState<string | null>(null);
+  const [editedClient, setEditedClient] = useState<Partial<Client>>({});
+
   const [pagination, setPagination] = useState({
     count: 0,
     page: 1,
@@ -811,14 +796,13 @@ function ClientsTable() {
       page: newPage
     }));
   };
-
   const handleClientDelete = async (client_name: string) => {
     if (!confirm('Are you sure you want to delete this client?')) {
       return;
     }
     
     try {
-      const response = await fetch(`http://localhost:3002/api/clients/${client_name}/`, {
+      const response = await fetch('http://localhost:3002/api/clients/${client_name}/', {
         method: 'DELETE',
       });
       
@@ -840,6 +824,35 @@ function ClientsTable() {
       console.error('Error deleting client:', err);
     }
   };
+  const handleClientEdit = async (client_name: string, updatedData: Partial<Client>) => {
+  try {
+    const response = await fetch(`http://localhost:3002/api/clients/${client_name}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update client');
+    }
+
+    const updatedClient = await response.json();
+
+    // Update local state
+    setClients(prev =>
+      prev.map(c =>
+        c.client_name === client_name ? { ...c, ...updatedClient } : c
+      )
+    );
+
+  } catch (err) {
+    setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    console.error('Error updating client:', err);
+  }
+};
+
 
   const totalPages = Math.ceil(pagination.count / pagination.pageSize);
 
@@ -925,24 +938,66 @@ function ClientsTable() {
               clients.map((client) => (
                 <tr key={client.client_name} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">{client.client_name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{client.credit_period}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{editingClientName === client.client_name ? (
+                                                                  <input
+                                                                    type="number"
+                                                                    className="border px-2 py-1 rounded"
+                                                                    value={editedClient.credit_period ?? client.credit_period}
+                                                                    onChange={(e) =>
+                                                                      setEditedClient(prev => ({ ...prev, credit_period: parseInt(e.target.value) }))
+                                                                    }
+                                                                  />
+                                                                ) : (
+                                                                  client.credit_period
+                                                                )}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex space-x-2">
-                      <button 
-                        title="Edit"
-                        className="text-blue-600 hover:text-blue-900"
-                        onClick={() => window.location.href = `/edit-client/${client.client_name}`}
-                      >
-                        <Edit2 size={18} />
-                      </button>
-                      
-                      <button 
-                        title="Delete"
-                        className="text-red-600 hover:text-red-900"
-                        onClick={() =>  handleClientDelete(client.client_name)}
-                      >
-                        <Trash2 size={18} />
-                      </button>
+                      {editingClientName === client.client_name ? (
+                        <>
+                          <button
+                            title="Save"
+                            className="text-green-600 hover:text-green-900"
+                            onClick={() => {
+                              handleClientEdit(client.client_name, editedClient);
+                              setEditingClientName(null);
+                              setEditedClient({});
+                            }}
+                          >
+                            <Check size={18} />
+                          </button>
+                          <button
+                            title="Cancel"
+                            className="text-red-600 hover:text-red-900"
+                            onClick={() => {
+                              setEditingClientName(null);
+                              setEditedClient({});
+                            }}
+                          >
+                            <X size={18} />
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            title="Edit"
+                            className="text-blue-600 hover:text-blue-900"
+                            onClick={() => {
+                              setEditingClientName(client.client_name);
+                              setEditedClient(client);
+                            }}
+                          >
+                            <Edit2 size={18} />
+                          </button>
+
+                          <button
+                            title="Delete"
+                            className="text-red-600 hover:text-red-900"
+                            onClick={() => handleClientDelete(client.client_name)}
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -951,6 +1006,7 @@ function ClientsTable() {
           </tbody>
         </table>
       </div>
+
       
       {/* Pagination */}
       <div className="mt-4 flex items-center justify-between">
