@@ -20,14 +20,16 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from paymentreminder.views import ClientViewSet, TransactionViewSet,import_excel
 
+
 # Create a router and register our viewsets with it
 router = DefaultRouter()
 router.register(r'api/clients', ClientViewSet)
 router.register(r'api/transactions', TransactionViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('import-excel/', import_excel, name='import-excel'),
-    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('paymentreminder.urls')),
 ]

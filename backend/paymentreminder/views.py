@@ -9,13 +9,27 @@ from .models import Client, Transaction
 from .serializers import (
     ClientSerializer, 
     TransactionSerializer, 
-    TransactionStatusSerializer
+    TransactionStatusSerializer,
+    UserSerializer, 
+    LoginSerializer,
 )
 from django.db import transaction as db_transaction
 import pandas as pd
 from io import BytesIO
+from rest_framework.permissions import IsAuthenticated 
+
+
+from django.contrib.auth import login, logout
+from rest_framework import status, generics, permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
+
+
 
 class ClientViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     """
     ViewSet for viewing and editing Client instances.
     """
@@ -48,6 +62,7 @@ class ClientViewSet(viewsets.ModelViewSet):
 
 
 class TransactionViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class = TransactionSerializer
     queryset = Transaction.objects.all()
     lookup_field = 'vch_no'
@@ -253,3 +268,70 @@ def import_excel(request):
         return Response({
             'error': str(e)
         }, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+
+
+#===================================================================================================================================================
+
+
+
+
+
+
+
+class RegisterView(generics.CreateAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = UserSerializer
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            login(request, user)
+            return Response({
+                "user": UserSerializer(user).data,
+                "message": "User registered successfully"
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LoginView(APIView):
+    permission_classes = (AllowAny,)
+    
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            login(request, user)
+            return Response({
+                "user": UserSerializer(user).data,
+                "message": "Login successful"
+            })
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(APIView):
+    def post(self, request):
+        logout(request)
+        return Response({"message": "Successfully logged out."})
+
+
+class UserDetailView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_object(self):
+        return self.request.user
+
+
+class SessionCheckView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        return Response({
+            "isAuthenticated": True,
+            "user": UserSerializer(request.user).data
+        })
+

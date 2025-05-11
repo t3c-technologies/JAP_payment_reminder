@@ -52,3 +52,45 @@ class TransactionStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = ['status']
+
+
+
+
+
+
+
+#=================================================================================================================================================
+
+
+
+from rest_framework import serializers
+from django.contrib.auth import get_user_model, authenticate
+
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+    
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'name', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
+    
+    def create(self, validated_data):
+        return User.objects.create_user(
+            email=validated_data['email'],
+            password=validated_data['password'],
+            name=validated_data.get('name', '')
+        )
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
+    
+    def validate(self, data):
+        user = authenticate(email=data['email'], password=data['password'])
+        if user and user.is_active:
+            return {'user': user}
+        raise serializers.ValidationError("Invalid email or password.")
