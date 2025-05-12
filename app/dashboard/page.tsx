@@ -327,7 +327,7 @@ function TransactionsTable() {
         url.searchParams.append('date_to', filters.date_to);
       }
       
-      const response = await fetch(url.toString(), {
+      const response = await fetchWithCSRF(url.toString(), {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -469,7 +469,6 @@ function TransactionsTable() {
 
   return (
     <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/50">
-      <h2 className="text-2xl font-semibold mb-6">Transactions</h2>
       
       {/* Filters */}
       <div className="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -1030,8 +1029,6 @@ function ClientsTable() {
 
   return (
     <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/50">
-      <h2 className="text-2xl font-semibold mb-6">Clients</h2>
-      
       {/* Filters */}
       <div className="mb-6">
         <div className="relative">
