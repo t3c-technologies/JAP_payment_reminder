@@ -1,0 +1,300 @@
+2025-05-12 17:38:09,740 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:40:15,608 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:40:17,390 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:40:17,391 - INFO - Added job "main" to job store "default"
+2025-05-12 17:40:17,391 - INFO - Scheduler started
+2025-05-12 17:40:17,393 - INFO - Scheduler started successfully
+2025-05-12 17:40:37,193 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:40:37 IST)" (scheduled at 2025-05-12 17:40:37.189810+05:30)
+2025-05-12 17:40:37,209 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:40:37,209 - INFO - No users due today.
+2025-05-12 17:40:37,210 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:40:57 IST)" executed successfully
+2025-05-12 17:40:57,196 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:41:17 IST)" (scheduled at 2025-05-12 17:40:57.189810+05:30)
+2025-05-12 17:40:57,200 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:40:57,201 - INFO - No users due today.
+2025-05-12 17:40:57,201 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:41:17 IST)" executed successfully
+2025-05-12 17:41:17,198 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:41:37 IST)" (scheduled at 2025-05-12 17:41:17.189810+05:30)
+2025-05-12 17:41:17,200 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:41:17,201 - INFO - No users due today.
+2025-05-12 17:41:17,201 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:41:37 IST)" executed successfully
+2025-05-12 17:41:24,002 - INFO - Scheduler has been shut down
+2025-05-12 17:41:24,024 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:43:24,061 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:43:24,062 - INFO - Added job "main" to job store "default"
+2025-05-12 17:43:24,062 - INFO - Scheduler started
+2025-05-12 17:43:24,063 - INFO - Scheduler started successfully
+2025-05-12 17:43:43,899 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:43:43 IST)" (scheduled at 2025-05-12 17:43:43.883574+05:30)
+2025-05-12 17:43:43,902 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:43:43,903 - INFO - No users due today.
+2025-05-12 17:43:43,903 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:44:03 IST)" executed successfully
+2025-05-12 17:44:03,892 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:44:23 IST)" (scheduled at 2025-05-12 17:44:03.883574+05:30)
+2025-05-12 17:44:03,893 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:44:03,894 - INFO - No users due today.
+2025-05-12 17:44:03,894 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:44:23 IST)" executed successfully
+2025-05-12 17:45:50,431 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:45:50,432 - INFO - Added job "main" to job store "default"
+2025-05-12 17:45:50,432 - INFO - Scheduler started
+2025-05-12 17:45:50,433 - INFO - Scheduler started successfully
+2025-05-12 17:45:50,453 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:46:10,276 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:46:30 IST)" (scheduled at 2025-05-12 17:46:10.261807+05:30)
+2025-05-12 17:46:10,279 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:46:10,280 - INFO - No users due today.
+2025-05-12 17:46:10,280 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:46:30 IST)" executed successfully
+2025-05-12 17:46:30,276 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:46:50 IST)" (scheduled at 2025-05-12 17:46:30.261807+05:30)
+2025-05-12 17:46:30,279 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:46:30,280 - INFO - No users due today.
+2025-05-12 17:46:30,280 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:46:50 IST)" executed successfully
+2025-05-12 17:46:35,850 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:46:35,853 - INFO - Scheduler has been shut down
+2025-05-12 17:46:37,393 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:46:37,393 - INFO - Added job "main" to job store "default"
+2025-05-12 17:46:37,393 - INFO - Scheduler started
+2025-05-12 17:46:37,394 - INFO - Scheduler started successfully
+2025-05-12 17:46:37,413 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:46:57,232 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:47:17 IST)" (scheduled at 2025-05-12 17:46:57.220555+05:30)
+2025-05-12 17:46:57,236 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:46:57,236 - INFO - No users due today.
+2025-05-12 17:46:57,236 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:47:17 IST)" executed successfully
+2025-05-12 17:47:17,223 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:47:37 IST)" (scheduled at 2025-05-12 17:47:17.220555+05:30)
+2025-05-12 17:47:17,226 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:47:17,227 - INFO - No users due today.
+2025-05-12 17:47:17,227 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:47:37 IST)" executed successfully
+2025-05-12 17:47:37,220 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:47:57 IST)" (scheduled at 2025-05-12 17:47:37.220555+05:30)
+2025-05-12 17:47:37,222 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:47:37,222 - INFO - No users due today.
+2025-05-12 17:47:37,223 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:47:57 IST)" executed successfully
+2025-05-12 17:47:57,235 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:48:17 IST)" (scheduled at 2025-05-12 17:47:57.220555+05:30)
+2025-05-12 17:47:57,238 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:47:57,239 - INFO - No users due today.
+2025-05-12 17:47:57,239 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:48:17 IST)" executed successfully
+2025-05-12 17:48:17,229 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:48:37 IST)" (scheduled at 2025-05-12 17:48:17.220555+05:30)
+2025-05-12 17:48:17,231 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:48:17,231 - INFO - No users due today.
+2025-05-12 17:48:17,231 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:48:37 IST)" executed successfully
+2025-05-12 17:48:18,505 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:48:18,507 - INFO - Scheduler has been shut down
+2025-05-12 17:48:20,138 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:48:20,139 - INFO - Added job "main" to job store "default"
+2025-05-12 17:48:20,139 - INFO - Scheduler started
+2025-05-12 17:48:20,140 - INFO - Scheduler started successfully
+2025-05-12 17:48:20,162 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:48:33,549 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:48:33,551 - INFO - Scheduler has been shut down
+2025-05-12 17:48:35,292 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:48:35,293 - INFO - Added job "main" to job store "default"
+2025-05-12 17:48:35,293 - INFO - Scheduler started
+2025-05-12 17:48:35,294 - INFO - Scheduler started successfully
+2025-05-12 17:48:35,315 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:48:55,120 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:49:15 IST)" (scheduled at 2025-05-12 17:48:55.105784+05:30)
+2025-05-12 17:48:55,123 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:48:55,123 - INFO - No users due today.
+2025-05-12 17:48:55,123 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:49:15 IST)" executed successfully
+2025-05-12 17:49:15,113 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:49:35 IST)" (scheduled at 2025-05-12 17:49:15.105784+05:30)
+2025-05-12 17:49:15,115 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:49:15,116 - INFO - No users due today.
+2025-05-12 17:49:15,116 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:49:35 IST)" executed successfully
+2025-05-12 17:49:35,109 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:49:55 IST)" (scheduled at 2025-05-12 17:49:35.105784+05:30)
+2025-05-12 17:49:35,111 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:49:35,111 - INFO - No users due today.
+2025-05-12 17:49:35,112 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:49:55 IST)" executed successfully
+2025-05-12 17:49:55,107 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:50:15 IST)" (scheduled at 2025-05-12 17:49:55.105784+05:30)
+2025-05-12 17:49:55,110 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:49:55,110 - INFO - No users due today.
+2025-05-12 17:49:55,111 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:50:15 IST)" executed successfully
+2025-05-12 17:50:15,110 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:50:35 IST)" (scheduled at 2025-05-12 17:50:15.105784+05:30)
+2025-05-12 17:50:15,112 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:50:15,112 - INFO - No users due today.
+2025-05-12 17:50:15,112 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:50:35 IST)" executed successfully
+2025-05-12 17:50:35,120 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:50:55 IST)" (scheduled at 2025-05-12 17:50:35.105784+05:30)
+2025-05-12 17:50:35,123 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:50:35,124 - INFO - No users due today.
+2025-05-12 17:50:35,124 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:50:55 IST)" executed successfully
+2025-05-12 17:50:53,926 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:50:53,928 - INFO - Scheduler has been shut down
+2025-05-12 17:50:55,604 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:50:55,605 - INFO - Added job "main" to job store "default"
+2025-05-12 17:50:55,605 - INFO - Scheduler started
+2025-05-12 17:50:55,606 - INFO - Scheduler started successfully
+2025-05-12 17:50:55,627 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:51:15,431 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:51:35 IST)" (scheduled at 2025-05-12 17:51:15.420465+05:30)
+2025-05-12 17:51:15,435 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:51:15,435 - INFO - No users due today.
+2025-05-12 17:51:15,435 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:51:35 IST)" executed successfully
+2025-05-12 17:51:35,433 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:51:55 IST)" (scheduled at 2025-05-12 17:51:35.420465+05:30)
+2025-05-12 17:51:35,435 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:51:35,435 - INFO - No users due today.
+2025-05-12 17:51:35,436 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:51:55 IST)" executed successfully
+2025-05-12 17:51:55,423 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:52:15 IST)" (scheduled at 2025-05-12 17:51:55.420465+05:30)
+2025-05-12 17:51:55,425 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:51:55,425 - INFO - No users due today.
+2025-05-12 17:51:55,426 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:52:15 IST)" executed successfully
+2025-05-12 17:52:15,434 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:52:35 IST)" (scheduled at 2025-05-12 17:52:15.420465+05:30)
+2025-05-12 17:52:15,436 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:52:15,436 - INFO - No users due today.
+2025-05-12 17:52:15,436 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:52:35 IST)" executed successfully
+2025-05-12 17:52:35,424 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:52:55 IST)" (scheduled at 2025-05-12 17:52:35.420465+05:30)
+2025-05-12 17:52:35,426 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:52:35,426 - INFO - No users due today.
+2025-05-12 17:52:35,427 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:52:55 IST)" executed successfully
+2025-05-12 17:52:55,422 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:53:15 IST)" (scheduled at 2025-05-12 17:52:55.420465+05:30)
+2025-05-12 17:52:55,424 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:52:55,425 - INFO - No users due today.
+2025-05-12 17:52:55,425 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:53:15 IST)" executed successfully
+2025-05-12 17:53:15,349 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:53:15,352 - INFO - Scheduler has been shut down
+2025-05-12 17:53:17,023 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:53:17,024 - INFO - Added job "main" to job store "default"
+2025-05-12 17:53:17,024 - INFO - Scheduler started
+2025-05-12 17:53:17,025 - INFO - Scheduler started successfully
+2025-05-12 17:53:17,044 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:53:35,163 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\backend\settings.py changed, reloading.
+2025-05-12 17:53:35,167 - INFO - Scheduler has been shut down
+2025-05-12 17:53:36,695 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:53:36,696 - INFO - Added job "main" to job store "default"
+2025-05-12 17:53:36,696 - INFO - Scheduler started
+2025-05-12 17:53:36,697 - INFO - Scheduler started successfully
+2025-05-12 17:53:36,717 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:53:56,534 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:54:16 IST)" (scheduled at 2025-05-12 17:53:56.526486+05:30)
+2025-05-12 17:53:56,539 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:53:56,539 - INFO - No users due today.
+2025-05-12 17:53:56,540 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:54:16 IST)" executed successfully
+2025-05-12 17:54:16,537 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:54:36 IST)" (scheduled at 2025-05-12 17:54:16.526486+05:30)
+2025-05-12 17:54:16,539 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:54:16,540 - INFO - No users due today.
+2025-05-12 17:54:16,540 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:54:36 IST)" executed successfully
+2025-05-12 17:54:36,539 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:54:56 IST)" (scheduled at 2025-05-12 17:54:36.526486+05:30)
+2025-05-12 17:54:36,541 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:54:36,542 - INFO - No users due today.
+2025-05-12 17:54:36,542 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:54:56 IST)" executed successfully
+2025-05-12 17:54:56,529 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:55:16 IST)" (scheduled at 2025-05-12 17:54:56.526486+05:30)
+2025-05-12 17:54:56,531 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:54:56,531 - INFO - No users due today.
+2025-05-12 17:54:56,531 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:55:16 IST)" executed successfully
+2025-05-12 17:55:16,540 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:55:36 IST)" (scheduled at 2025-05-12 17:55:16.526486+05:30)
+2025-05-12 17:55:16,542 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:55:16,542 - INFO - No users due today.
+2025-05-12 17:55:16,543 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:55:36 IST)" executed successfully
+2025-05-12 17:55:36,534 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:55:56 IST)" (scheduled at 2025-05-12 17:55:36.526486+05:30)
+2025-05-12 17:55:36,536 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:55:36,537 - INFO - No users due today.
+2025-05-12 17:55:36,537 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:55:56 IST)" executed successfully
+2025-05-12 17:55:56,527 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:56:16 IST)" (scheduled at 2025-05-12 17:55:56.526486+05:30)
+2025-05-12 17:55:56,529 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:55:56,529 - INFO - No users due today.
+2025-05-12 17:55:56,529 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:56:16 IST)" executed successfully
+2025-05-12 17:55:59,447 - INFO - Scheduler has been shut down
+2025-05-12 17:57:46,459 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 17:57:46,459 - INFO - Added job "main" to job store "default"
+2025-05-12 17:57:46,459 - INFO - Scheduler started
+2025-05-12 17:57:46,461 - INFO - Scheduler started successfully
+2025-05-12 17:57:46,479 - INFO - Watching for file changes with StatReloader
+2025-05-12 17:58:06,298 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:58:26 IST)" (scheduled at 2025-05-12 17:58:06.285747+05:30)
+2025-05-12 17:58:06,302 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:58:06,303 - INFO - No users due today.
+2025-05-12 17:58:06,303 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:58:26 IST)" executed successfully
+2025-05-12 17:58:26,287 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:58:46 IST)" (scheduled at 2025-05-12 17:58:26.285747+05:30)
+2025-05-12 17:58:26,289 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 17:58:26,289 - INFO - No users due today.
+2025-05-12 17:58:26,290 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 17:58:46 IST)" executed successfully
+2025-05-12 17:58:43,287 - INFO - Scheduler has been shut down
+2025-05-12 18:09:54,852 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 18:09:54,853 - INFO - Added job "main" to job store "default"
+2025-05-12 18:09:54,853 - INFO - Scheduler started
+2025-05-12 18:09:54,854 - INFO - Scheduler started successfully
+2025-05-12 18:09:54,875 - INFO - Watching for file changes with StatReloader
+2025-05-12 18:10:14,687 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:10:34 IST)" (scheduled at 2025-05-12 18:10:14.678575+05:30)
+2025-05-12 18:10:14,690 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:10:14,690 - INFO - No users due today.
+2025-05-12 18:10:14,690 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:10:34 IST)" executed successfully
+2025-05-12 18:10:34,683 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:10:54 IST)" (scheduled at 2025-05-12 18:10:34.678575+05:30)
+2025-05-12 18:10:34,684 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:10:34,685 - INFO - No users due today.
+2025-05-12 18:10:34,685 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:10:54 IST)" executed successfully
+2025-05-12 18:10:54,692 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:11:14 IST)" (scheduled at 2025-05-12 18:10:54.678575+05:30)
+2025-05-12 18:10:54,693 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:10:54,694 - INFO - No users due today.
+2025-05-12 18:10:54,694 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:11:14 IST)" executed successfully
+2025-05-12 18:11:14,694 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:11:34 IST)" (scheduled at 2025-05-12 18:11:14.678575+05:30)
+2025-05-12 18:11:14,696 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:11:14,697 - INFO - No users due today.
+2025-05-12 18:11:14,697 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:11:34 IST)" executed successfully
+2025-05-12 18:11:34,685 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:11:54 IST)" (scheduled at 2025-05-12 18:11:34.678575+05:30)
+2025-05-12 18:11:34,687 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:11:34,687 - INFO - No users due today.
+2025-05-12 18:11:34,688 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:11:54 IST)" executed successfully
+2025-05-12 18:11:54,686 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:12:14 IST)" (scheduled at 2025-05-12 18:11:54.678575+05:30)
+2025-05-12 18:11:54,688 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:11:54,688 - INFO - No users due today.
+2025-05-12 18:11:54,688 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:12:14 IST)" executed successfully
+2025-05-12 18:12:14,691 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:12:34 IST)" (scheduled at 2025-05-12 18:12:14.678575+05:30)
+2025-05-12 18:12:14,693 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:12:14,693 - INFO - No users due today.
+2025-05-12 18:12:14,693 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:12:34 IST)" executed successfully
+2025-05-12 18:12:34,683 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:12:54 IST)" (scheduled at 2025-05-12 18:12:34.678575+05:30)
+2025-05-12 18:12:34,685 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:12:34,685 - INFO - No users due today.
+2025-05-12 18:12:34,685 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:12:54 IST)" executed successfully
+2025-05-12 18:12:54,686 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:13:14 IST)" (scheduled at 2025-05-12 18:12:54.678575+05:30)
+2025-05-12 18:12:54,688 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:12:54,689 - INFO - No users due today.
+2025-05-12 18:12:54,689 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:13:14 IST)" executed successfully
+2025-05-12 18:13:14,686 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:13:34 IST)" (scheduled at 2025-05-12 18:13:14.678575+05:30)
+2025-05-12 18:13:14,690 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:13:14,691 - INFO - No users due today.
+2025-05-12 18:13:14,691 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:13:34 IST)" executed successfully
+2025-05-12 18:13:34,684 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:13:54 IST)" (scheduled at 2025-05-12 18:13:34.678575+05:30)
+2025-05-12 18:13:34,686 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:13:34,687 - INFO - No users due today.
+2025-05-12 18:13:34,687 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:13:54 IST)" executed successfully
+2025-05-12 18:13:54,682 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:14:14 IST)" (scheduled at 2025-05-12 18:13:54.678575+05:30)
+2025-05-12 18:13:54,683 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:13:54,684 - INFO - No users due today.
+2025-05-12 18:13:54,684 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:14:14 IST)" executed successfully
+2025-05-12 18:14:14,680 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:14:34 IST)" (scheduled at 2025-05-12 18:14:14.678575+05:30)
+2025-05-12 18:14:14,683 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:14:14,683 - INFO - No users due today.
+2025-05-12 18:14:14,683 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:14:34 IST)" executed successfully
+2025-05-12 18:14:34,680 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:14:54 IST)" (scheduled at 2025-05-12 18:14:34.678575+05:30)
+2025-05-12 18:14:34,682 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:14:34,683 - INFO - No users due today.
+2025-05-12 18:14:34,683 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:14:54 IST)" executed successfully
+2025-05-12 18:14:54,692 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:15:14 IST)" (scheduled at 2025-05-12 18:14:54.678575+05:30)
+2025-05-12 18:14:54,695 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:14:54,698 - INFO - No users due today.
+2025-05-12 18:14:54,698 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:15:14 IST)" executed successfully
+2025-05-12 18:15:14,681 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:15:34 IST)" (scheduled at 2025-05-12 18:15:14.678575+05:30)
+2025-05-12 18:15:14,682 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:15:14,683 - INFO - No users due today.
+2025-05-12 18:15:14,683 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:15:34 IST)" executed successfully
+2025-05-12 18:15:34,692 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:15:54 IST)" (scheduled at 2025-05-12 18:15:34.678575+05:30)
+2025-05-12 18:15:34,694 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:15:34,694 - INFO - No users due today.
+2025-05-12 18:15:34,695 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:15:54 IST)" executed successfully
+2025-05-12 18:15:54,693 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:16:14 IST)" (scheduled at 2025-05-12 18:15:54.678575+05:30)
+2025-05-12 18:15:54,718 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:15:54,720 - INFO - No users due today.
+2025-05-12 18:15:54,720 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:16:14 IST)" executed successfully
+2025-05-12 18:16:14,681 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:16:34 IST)" (scheduled at 2025-05-12 18:16:14.678575+05:30)
+2025-05-12 18:16:14,684 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:16:14,685 - INFO - No users due today.
+2025-05-12 18:16:14,686 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:16:34 IST)" executed successfully
+2025-05-12 18:16:34,686 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:16:54 IST)" (scheduled at 2025-05-12 18:16:34.678575+05:30)
+2025-05-12 18:16:34,688 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:16:34,689 - INFO - No users due today.
+2025-05-12 18:16:34,689 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:16:54 IST)" executed successfully
+2025-05-12 18:16:54,682 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:17:14 IST)" (scheduled at 2025-05-12 18:16:54.678575+05:30)
+2025-05-12 18:16:54,684 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:16:54,684 - INFO - No users due today.
+2025-05-12 18:16:54,684 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:17:14 IST)" executed successfully
+2025-05-12 18:17:00,852 - INFO - Scheduler has been shut down
+2025-05-12 18:17:44,617 - INFO - Watching for file changes with StatReloader
+2025-05-12 18:19:09,788 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-05-12 18:19:09,789 - INFO - Added job "main" to job store "default"
+2025-05-12 18:19:09,789 - INFO - Scheduler started
+2025-05-12 18:19:09,790 - INFO - Scheduler started successfully
+2025-05-12 18:19:09,811 - INFO - Watching for file changes with StatReloader
+2025-05-12 18:19:29,613 - INFO - Running job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:19:49 IST)" (scheduled at 2025-05-12 18:19:29.598474+05:30)
+2025-05-12 18:19:29,616 - ERROR - Database error: no such table: paymentreminder_client
+2025-05-12 18:19:29,617 - INFO - No users due today.
+2025-05-12 18:19:29,617 - INFO - Job "main (trigger: interval[0:00:20], next run at: 2025-05-12 18:19:49 IST)" executed successfully
+2025-05-12 18:19:40,932 - INFO - C:\Users\mtalh\OneDrive\Desktop\webproject\paymentreminder\backend\paymentreminder\cron_job\scheduler.py changed, reloading.
+2025-05-12 18:19:40,936 - INFO - Scheduler has been shut down

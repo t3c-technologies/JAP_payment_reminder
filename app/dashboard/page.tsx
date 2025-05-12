@@ -54,7 +54,6 @@ const fetchWithCSRF = async (url: string, options: RequestInit = {}) => {
   });
 };
 
-
 // Main App Component
 export default function App() {
   //normal state
@@ -69,7 +68,6 @@ export default function App() {
 
   const router = useRouter();
 
- 
 
   useEffect(() => {
     checkAuth();
