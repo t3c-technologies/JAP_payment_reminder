@@ -4,6 +4,12 @@ import { Search, ChevronDown, ChevronUp, Edit2, Trash2, Check, X, ChevronLeft, C
 import ExcelJS from 'exceljs';
 import { parseISO, format } from 'date-fns';
 import { useRouter } from 'next/navigation';
+import { stdout } from 'process';
+
+
+const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL
+const apiBack = process.env.NEXT_PUBLIC_API_BACK_URL
+console.log("api_back", apiBack);
 
 // Define TypeScript interfaces
 interface Transaction {
@@ -68,13 +74,13 @@ export default function App() {
 
   const router = useRouter();
 
-
+  
   useEffect(() => {
     checkAuth();
     }, []);
     const checkAuth = async () => {
         try {
-            const response = await fetchWithCSRF('http://localhost:3002/api/session-check/', {
+            const response = await fetchWithCSRF(`${apiBack}/api/session-check/`, {
             credentials: 'include', // Important for cookies
             });
 
@@ -112,7 +118,7 @@ export default function App() {
 
       // Upload the file and process on the server side
       setImportStatus({ status: 'loading', message: 'Uploading and processing file...' });
-      const response = await fetchWithCSRF('http://localhost:3002/import-excel/', {
+      const response = await fetchWithCSRF(`${apiBack}/import-excel/`, {
         method: 'POST',
         body: formData,
         credentials:'include',
@@ -273,7 +279,7 @@ function TransactionsTable() {
   }>({
     count: 0,
     page: 1,
-    pageSize: 10,
+    pageSize: 5,
   });
   
   const [filters, setFilters] = useState({
@@ -297,7 +303,7 @@ function TransactionsTable() {
       setLoading(true);
       
       // Build URL with query parameters
-      let url = new URL('http://localhost:3002/api/transactions/');
+      let url = new URL(`${apiBack}/api/transactions/`);
       
       // Add pagination
       url.searchParams.append('page', pagination.page.toString());
@@ -362,7 +368,7 @@ function TransactionsTable() {
   //EDITING ROWS
   const handleSaveEdit = async (vch_no: string) => {
     try {
-      const response = await fetchWithCSRF(`http://localhost:3002/api/transactions/${encodeURIComponent(vch_no)}/`, {
+      const response = await fetchWithCSRF(`${apiBack}/api/transactions/${encodeURIComponent(vch_no)}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -408,7 +414,7 @@ function TransactionsTable() {
   //TRANSACTIONS PAYMENT STATUS TOGGLE FUNCTION
   const handleChangeStatus = async (vch_no: string, newStatus: 'paid' | 'unpaid') => {
     try {
-      const response = await fetchWithCSRF(`http://localhost:3002/api/transactions/${encodeURIComponent(vch_no)}/`, {
+      const response = await fetchWithCSRF(`${apiBack}/api/transactions/${encodeURIComponent(vch_no)}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -439,7 +445,7 @@ function TransactionsTable() {
     }
     
     try {
-      const response = await fetchWithCSRF(`http://localhost:3002/api/transactions/${encodeURIComponent(vch_no)}/`, {
+      const response = await fetchWithCSRF(`${apiBack}/api/transactions/${encodeURIComponent(vch_no)}/`, {
         method: 'DELETE',
         credentials:'include',
       });
@@ -895,7 +901,7 @@ function ClientsTable() {
   const [pagination, setPagination] = useState({
     count: 0,
     page: 1,
-    pageSize: 10,
+    pageSize: 5,
   });
   
   const [filters, setFilters] = useState({
@@ -916,7 +922,7 @@ function ClientsTable() {
       setLoading(true);
       
       // Build URL with query parameters
-      let url = new URL('http://localhost:3002/api/clients/');
+      let url = new URL(`${apiBack}/api/clients/`);
       
       // Add pagination
       url.searchParams.append('page', pagination.page.toString());
@@ -991,7 +997,7 @@ function ClientsTable() {
     }
     
     try {
-      const response = await fetchWithCSRF(`http://localhost:3002/api/clients/${client_name}/`, {
+      const response = await fetchWithCSRF(`${apiBack}/api/clients/${client_name}/`, {
         method: 'DELETE',
         credentials:'include',
       });
@@ -1016,7 +1022,7 @@ function ClientsTable() {
   };
   const handleClientEdit = async (client_name: string, updatedData: Partial<Client>) => {
   try {
-    const response = await fetchWithCSRF(`http://localhost:3002/api/clients/${client_name}/`, {
+    const response = await fetchWithCSRF(`${apiBack}/api/clients/${client_name}/`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

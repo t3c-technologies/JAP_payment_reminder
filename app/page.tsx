@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Building2, CreditCard, Mail, Lock, User, ArrowRight } from 'lucide-react';
 
+const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL
+const apiBack = process.env.NEXT_PUBLIC_API_BACK_URL
+
 const getCookie = (name: string): string | null => {
   if (typeof document === 'undefined') return null; // For server-side rendering
   const value = `; ${document.cookie}`;
@@ -54,7 +57,7 @@ export default function LoginPage() {
     try {
       const endpoint = isLogin ? '/api/login/' : '/api/register/';
 
-      const response = await fetchWithCSRF(`http://localhost:3002${endpoint}`, {
+      const response = await fetchWithCSRF(`${apiBack}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
