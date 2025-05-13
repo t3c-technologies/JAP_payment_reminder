@@ -401,7 +401,7 @@ function TransactionsTable() {
   const handlePageChange = (newPage: number) => {
     setPagination(prev => ({
       ...prev,
-      page: newPage
+      page: newPage,
     }));
   };
 
@@ -793,18 +793,40 @@ function TransactionsTable() {
       </div>
       
       {/* Pagination */}
-      <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm text-gray-700">
+      <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Page Size Selector */}
+        <div className="flex items-center">
+          <span className="text-sm text-gray-600 mr-2">Rows per page:</span>
+          <select
+            value={pagination.pageSize}
+            onChange={(e) =>
+              setPagination((prev) => ({
+                ...prev,
+                pageSize: Number(e.target.value),
+              }))
+            }
+            className="rounded border border-gray-300 px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+        
+        {/* Centered Pagination Info */}
+        <p className="text-sm text-gray-700 text-center flex-1">
           Showing {((pagination.page - 1) * pagination.pageSize) + 1} to {Math.min(pagination.page * pagination.pageSize, pagination.count)} of {pagination.count} transactions
         </p>
         
+        {/* Page Navigation */}
         <div className="flex space-x-2">
           <button
             disabled={pagination.page === 1}
             onClick={() => handlePageChange(pagination.page - 1)}
             className={`p-2 rounded-full ${
-              pagination.page === 1 
-                ? 'text-gray-400 cursor-not-allowed' 
+              pagination.page === 1
+                ? 'text-gray-400 cursor-not-allowed'
                 : 'text-blue-600 hover:bg-blue-100/50 backdrop-blur-sm'
             }`}
           >
@@ -847,8 +869,8 @@ function TransactionsTable() {
             disabled={pagination.page === totalPages}
             onClick={() => handlePageChange(pagination.page + 1)}
             className={`p-2 rounded ${
-              pagination.page === totalPages 
-                ? 'text-gray-400 cursor-not-allowed' 
+              pagination.page === totalPages
+                ? 'text-gray-400 cursor-not-allowed'
                 : 'text-blue-600 hover:bg-blue-50'
             }`}
           >
@@ -1180,19 +1202,41 @@ function ClientsTable() {
 
       
       {/* Pagination */}
-      <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm text-gray-700">
-          Showing {((pagination.page - 1) * pagination.pageSize) + 1} to {Math.min(pagination.page * pagination.pageSize, pagination.count)} of {pagination.count} clients
+      <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Page Size Selector */}
+        <div className="flex items-center">
+          <span className="text-sm text-gray-600 mr-2">Records per page:</span>
+          <select
+            value={pagination.pageSize}
+            onChange={(e) =>
+              setPagination((prev) => ({
+                ...prev,
+                pageSize: Number(e.target.value),
+              }))
+            }
+            className="rounded border border-gray-300 px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+        
+        {/* Centered Pagination Info */}
+        <p className="text-sm text-gray-700 text-center flex-1">
+          Showing {((pagination.page - 1) * pagination.pageSize) + 1} to {Math.min(pagination.page * pagination.pageSize, pagination.count)} of {pagination.count} transactions
         </p>
         
+        {/* Page Navigation */}
         <div className="flex space-x-2">
           <button
             disabled={pagination.page === 1}
             onClick={() => handlePageChange(pagination.page - 1)}
-            className={`p-2 rounded ${
-              pagination.page === 1 
-                ? 'text-gray-400 cursor-not-allowed' 
-                : 'text-blue-600 hover:bg-blue-50'
+            className={`p-2 rounded-full ${
+              pagination.page === 1
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-blue-600 hover:bg-blue-100/50 backdrop-blur-sm'
             }`}
           >
             <ChevronLeft size={20} />
@@ -1218,10 +1262,10 @@ function ClientsTable() {
                 <button
                   key={pageNumber}
                   onClick={() => handlePageChange(pageNumber)}
-                  className={`h-8 w-8 flex items-center justify-center rounded ${
+                  className={`h-8 w-8 flex items-center justify-center rounded-full ${
                     pagination.page === pageNumber
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-700 hover:bg-blue-50'
+                      ? 'bg-blue-600/90 text-white shadow-md'
+                      : 'text-gray-700 hover:bg-blue-50/70 backdrop-blur-sm'
                   }`}
                 >
                   {pageNumber}
@@ -1234,8 +1278,8 @@ function ClientsTable() {
             disabled={pagination.page === totalPages}
             onClick={() => handlePageChange(pagination.page + 1)}
             className={`p-2 rounded ${
-              pagination.page === totalPages 
-                ? 'text-gray-400 cursor-not-allowed' 
+              pagination.page === totalPages
+                ? 'text-gray-400 cursor-not-allowed'
                 : 'text-blue-600 hover:bg-blue-50'
             }`}
           >

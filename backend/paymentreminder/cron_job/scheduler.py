@@ -12,7 +12,7 @@ def start_scheduler_1():
     scheduler = BackgroundScheduler()
     
     # For production, use a daily schedule (e.g., 9 AM)
-    trigger = CronTrigger(hour=6, minute=0)  # Daily at 9 AM
+    trigger = CronTrigger(hour=11, minute=25)  # Daily at 9 AM
     #trigger = IntervalTrigger(seconds=20)
     
     from .run import main

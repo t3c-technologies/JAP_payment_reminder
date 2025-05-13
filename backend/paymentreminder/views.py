@@ -13,6 +13,7 @@ from .serializers import (
     UserSerializer, 
     LoginSerializer,
 )
+from .pagination import CustomPageNumberPagination
 from django.db import transaction as db_transaction
 import pandas as pd
 from io import BytesIO
@@ -34,6 +35,7 @@ class ClientViewSet(viewsets.ModelViewSet):
     ViewSet for viewing and editing Client instances.
     """
     serializer_class = ClientSerializer
+    pagination_class = CustomPageNumberPagination
     queryset = Client.objects.all()
     filter_backends = [
         DjangoFilterBackend,
@@ -63,6 +65,7 @@ class ClientViewSet(viewsets.ModelViewSet):
 
 class TransactionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
+    pagination_class = CustomPageNumberPagination
     serializer_class = TransactionSerializer
     queryset = Transaction.objects.all()
     lookup_field = 'vch_no'
