@@ -19,11 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = 'django-insecure-klq7lp%uv0jw-882=8my)q=_^(yx^q1wimxxo86jbvfd=v_bft'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -62,8 +62,8 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-  # Allow your React app's origin
+    "http://localhost:3030",
+    "https://jap.t3c.ai/"
 ]
 
 
@@ -205,7 +205,9 @@ CSRF_COOKIE_HTTPONLY = False  # Allow JavaScript to read the CSRF cookie
 CSRF_COOKIE_SECURE = False  # Set to True in production with HTTPS
 CSRF_COOKIE_SAMESITE = 'Lax'  # Helps prevent CSRF attacks while allowing cross-origin requests
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3030",
+    "https://jap.t3c.ai/"
+
 ]
 
 SESSION_COOKIE_HTTPONLY = True
